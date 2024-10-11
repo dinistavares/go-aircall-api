@@ -30,6 +30,21 @@ type Webhook struct {
 	Events     *[]string `json:"events,omitempty"`
 }
 
+type InboundWebhook struct {
+	Resource  string              `json:"resource,omitempty"`
+	Event     string              `json:"event,omitempty"`
+	Timestamp int                 `json:"timestamp,omitempty"`
+	Token     string              `json:"token,omitempty"`
+	Data      *InboundWebhookData `json:"data,omitempty"`
+}
+
+type InboundWebhookData struct {
+	Call    *Call    `json:"call,omitempty"`
+	User    *User    `json:"user,omitempty"`
+	Number  *Number  `json:"number,omitempty"`
+	Contact *Contact `json:"contact,omitempty"`
+}
+
 type WebhookQueries struct{}
 
 // Query parameters for 'ListWebhooks' method.
