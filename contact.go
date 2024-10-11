@@ -77,23 +77,27 @@ func (pq ContactQueries) NewListContacts() *ListContactsQueryParams {
 	}
 }
 
-// Set sort for for 'GetEvents' method.
+// Set 'from' for for 'List' method.
 func (p ListContactsQueryParams) From(value string) {
 	p.from(value)
 }
 
+// Set 'to' for for 'List' method.
 func (p ListContactsQueryParams) To(value string) {
 	p.to(value)
 }
 
+// Set 'order' for for 'List' method.
 func (p ListContactsQueryParams) Order(value string) {
 	p.order(value)
 }
 
+// Set 'order_by' by for for 'List' method.
 func (p ListContactsQueryParams) OrderBy(value string) {
 	p.orderBy(value)
 }
 
+// Set 'page' and 'per_page' for for 'List' method.
 func (p ListContactsQueryParams) Paginate(page int, perPage int) {
 	p.page(page, perPage)
 }
@@ -124,31 +128,37 @@ func (pq ContactQueries) NewSearchContacts() *SearchContactsQueryParams {
 	}
 }
 
-// Set sort for for 'GetEvents' method.
+// Set from for for 'Search' method.
 func (p SearchContactsQueryParams) From(value string) {
 	p.from(value)
 }
 
+// Set 'to' for for 'Search' method.
 func (p SearchContactsQueryParams) To(value string) {
 	p.to(value)
 }
 
+// Set 'order' for for 'Search' method.
 func (p SearchContactsQueryParams) Order(value string) {
 	p.order(value)
 }
 
+// Set 'order_by' by for for 'Search' method.
 func (p SearchContactsQueryParams) OrderBy(value string) {
 	p.orderBy(value)
 }
 
+// Set 'phone_number' for for 'Search' method.
 func (p SearchContactsQueryParams) PhoneNumber(value string) {
 	p.set("phone_number", value)
 }
 
+// Set 'email' for for 'Search' method.
 func (p SearchContactsQueryParams) Email(value string) {
 	p.set("email", value)
 }
 
+// Set 'page' and 'per_page' for for 'Search' method.
 func (p SearchContactsQueryParams) Paginate(page int, perPage int) {
 	p.page(page, perPage)
 }
