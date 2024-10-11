@@ -49,7 +49,9 @@ type Client struct {
 	auth    *auth
 	baseURL *url.URL
 
+	Call    *CallsService
 	Contact *ContactsService
+	Number  *NumbersService
 	Webhook *WebhookService
 }
 
@@ -96,7 +98,9 @@ func NewWithConfig(config ClientConfig) *Client {
 	client := &Client{config: &config, client: config.HttpClient, auth: &auth{}, baseURL: baseURL}
 
 	// Map services
+	client.Call = &CallsService{client: client}
 	client.Contact = &ContactsService{client: client}
+	client.Number = &NumbersService{client: client}
 	client.Webhook = &WebhookService{client: client}
 
 	return client

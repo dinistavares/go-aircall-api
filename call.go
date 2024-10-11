@@ -36,13 +36,13 @@ type Call struct {
 	Cost             string         `json:"cost,omitempty"`
 	Comments         *[]CallComment `json:"comments,omitempty"`
 	Tags             *[]CallTag     `json:"tags,omitempty"`
+	Number           *Number        `json:"number,omitempty"`
 
 	// TODO: add types when services are implemented
 	TransferredBy      interface{} `json:"transferred_by,omitempty"`
 	TransferredTo      interface{} `json:"transferred_to,omitempty"`
 	AssignedTo         interface{} `json:"assigned_to,omitempty"`
 	User               interface{} `json:"user,omitempty"`
-	Number             interface{} `json:"number,omitempty"`
 	Teams              interface{} `json:"teams,omitempty"`
 	Participants       interface{} `json:"participants,omitempty"`
 	IvrOptionsSelected interface{} `json:"ivr_options_selected,omitempty"`
