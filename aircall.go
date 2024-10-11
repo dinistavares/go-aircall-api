@@ -52,6 +52,7 @@ type Client struct {
 	Call    *CallsService
 	Contact *ContactsService
 	Number  *NumbersService
+	Message *MessagesService
 	Webhook *WebhookService
 }
 
@@ -62,6 +63,7 @@ type service struct {
 type ErrorResponse struct {
 	Response *http.Response
 
+	Message      string `json:"message,omitempty"`
 	ErrorMessage string `json:"error,omitempty"`
 	Troubleshoot string `json:"troubleshoot,omitempty"`
 	Success      bool   `json:"success,omitempty"`
@@ -78,6 +80,10 @@ func (response *ErrorResponse) Error() string {
 
 	if response.Troubleshoot != "" {
 		errorString = fmt.Sprintf("%s [%s]", errorString, response.Troubleshoot)
+	}
+
+	if response.Message != "" {
+		errorString = fmt.Sprintf("%s [%s]", errorString, response.Message)
 	}
 
 	return errorString
@@ -101,6 +107,7 @@ func NewWithConfig(config ClientConfig) *Client {
 	client.Call = &CallsService{client: client}
 	client.Contact = &ContactsService{client: client}
 	client.Number = &NumbersService{client: client}
+	client.Message = &MessagesService{client: client}
 	client.Webhook = &WebhookService{client: client}
 
 	return client
