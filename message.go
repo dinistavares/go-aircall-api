@@ -28,6 +28,12 @@ type Message struct {
 	MediaDetails   *[]MediaDetail `json:"media_details,omitempty"`
 }
 
+type NewMessage struct {
+	To       string   `json:"to,omitempty"`
+	Body     string   `json:"body,omitempty"`
+	MediaURL []string `json:"media_url,omitempty"`
+}
+
 type MediaDetail struct {
 	FileName     string `json:"file_name,omitempty"`
 	FileType     string `json:"file_type,omitempty"`
@@ -86,7 +92,7 @@ func (service *MessagesService) DeleteNumberConfiguration(numberID int) (*Respon
 //  https://developer.aircall.io/api-references/#send-message
 //  ***********************************************************************************
 
-func (service *MessagesService) Send(numberID int, message *Message) (*Message, *Response, error) {
+func (service *MessagesService) Send(numberID int, message *NewMessage) (*Message, *Response, error) {
 	_url := fmt.Sprintf("numbers/%d/messages", numberID)
 
 	responseBody := new(Message)
