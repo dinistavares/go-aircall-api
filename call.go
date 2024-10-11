@@ -31,18 +31,18 @@ type Call struct {
 	Recording        string         `json:"recording,omitempty"`
 	Asset            string         `json:"asset,omitempty"`
 	RawDigits        string         `json:"raw_digits,omitempty"`
-	Contact          *Contact       `json:"contact,omitempty"`
 	Archived         bool           `json:"archived,omitempty"`
 	Cost             string         `json:"cost,omitempty"`
 	Comments         *[]CallComment `json:"comments,omitempty"`
 	Tags             *[]CallTag     `json:"tags,omitempty"`
+	Contact          *Contact       `json:"contact,omitempty"`
 	Number           *Number        `json:"number,omitempty"`
+	User             *User          `json:"user,omitempty"`
 
 	// TODO: add types when services are implemented
 	TransferredBy      interface{} `json:"transferred_by,omitempty"`
 	TransferredTo      interface{} `json:"transferred_to,omitempty"`
 	AssignedTo         interface{} `json:"assigned_to,omitempty"`
-	User               interface{} `json:"user,omitempty"`
 	Teams              interface{} `json:"teams,omitempty"`
 	Participants       interface{} `json:"participants,omitempty"`
 	IvrOptionsSelected interface{} `json:"ivr_options_selected,omitempty"`
@@ -96,7 +96,7 @@ type CallInsightCardContents struct {
 
 type CallQueries struct{}
 
-// Query parameters for 'ListCalls' method.
+// Query parameters for 'List' method.
 type ListCallsQueryParams struct {
 	QueryValues
 }
@@ -116,44 +116,44 @@ func (service *CallsService) Query() *CallQueries {
 //  https://developer.aircall.io/api-references/#list-all-calls
 //  ***********************************************************************************
 
-// Creates Query parameters for 'ListCalls'
+// Creates Query parameters for 'List'
 func (pq CallQueries) NewListCalls() *ListCallsQueryParams {
 	return &ListCallsQueryParams{
 		QueryValues: QueryValues{},
 	}
 }
 
-// Set from for for 'ListCalls' method.
+// Set from for for 'List' method.
 func (p ListCallsQueryParams) From(value string) {
 	p.from(value)
 }
 
-// Set 'to' for for 'ListCalls' method.
+// Set 'to' for for 'List' method.
 func (p ListCallsQueryParams) To(value string) {
 	p.to(value)
 }
 
-// Set 'order' for for 'ListCalls' method.
+// Set 'order' for for 'List' method.
 func (p ListCallsQueryParams) Order(value string) {
 	p.order(value)
 }
 
-// Set 'fetch_contact' for for 'ListCalls' method.
+// Set 'fetch_contact' for for 'List' method.
 func (p ListCallsQueryParams) FetchContact(value bool) {
 	p.set("fetch_contact", fmt.Sprintf("%t", value))
 }
 
-// Set 'fetch_short_urls' for for 'ListCalls' method.
+// Set 'fetch_short_urls' for for 'List' method.
 func (p ListCallsQueryParams) FetchShortURLs(value bool) {
 	p.set("fetch_short_urls", fmt.Sprintf("%t", value))
 }
 
-// Set 'fetch_call_timeline' for for 'ListCalls' method.
+// Set 'fetch_call_timeline' for for 'List' method.
 func (p ListCallsQueryParams) FetchCallTimeline(value bool) {
 	p.set("fetch_call_timeline", fmt.Sprintf("%t", value))
 }
 
-// Set 'page' and 'per_page' for for 'ListCalls' method.
+// Set 'page' and 'per_page' for for 'List' method.
 func (p ListCallsQueryParams) Paginate(page int, perPage int) {
 	p.page(page, perPage)
 }
