@@ -50,6 +50,7 @@ type Client struct {
 	baseURL *url.URL
 
 	Contact *ContactsService
+	Webhook *WebhookService
 }
 
 type service struct {
@@ -96,6 +97,7 @@ func NewWithConfig(config ClientConfig) *Client {
 
 	// Map services
 	client.Contact = &ContactsService{client: client}
+	client.Webhook = &WebhookService{client: client}
 
 	return client
 }
@@ -270,20 +272,20 @@ func (client *Client) Get(url string, opts interface{}, v interface{}) (*Respons
 	return client.Do(req, v)
 }
 
-func (s *service) Post(url string, body interface{}, v interface{}) (*Response, error) {
-	req, _ := s.client.NewRequest("POST", url, nil, body)
+func (client *Client) Post(url string, body interface{}, v interface{}) (*Response, error) {
+	req, _ := client.NewRequest("POST", url, nil, body)
 
-	return s.client.Do(req, v)
+	return client.Do(req, v)
 }
 
-func (s *service) Put(url string, body interface{}, v interface{}) (*Response, error) {
-	req, _ := s.client.NewRequest("PUT", url, nil, body)
+func (client *Client) Put(url string, body interface{}, v interface{}) (*Response, error) {
+	req, _ := client.NewRequest("PUT", url, nil, body)
 
-	return s.client.Do(req, v)
+	return client.Do(req, v)
 }
 
-func (s *service) Delete(url string) (*Response, error) {
-	req, _ := s.client.NewRequest("DELETE", url, nil, nil)
+func (client *Client) Delete(url string) (*Response, error) {
+	req, _ := client.NewRequest("DELETE", url, nil, nil)
 
-	return s.client.Do(req, nil)
+	return client.Do(req, nil)
 }

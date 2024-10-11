@@ -1,6 +1,7 @@
 package aircall
 
 import (
+	"fmt"
 	"reflect"
 )
 
@@ -43,7 +44,15 @@ func (v QueryValues) order(value string) {
 }
 
 func (v QueryValues) orderBy(value string) {
-	v["order_by"] = value
+}
+
+func (v QueryValues) page(page int, perPage int) {
+	v["page"] = fmt.Sprintf("%d", page)
+	v["per_page"] = fmt.Sprintf("%d", perPage)
+}
+
+func (v QueryValues) set(key string, value string) {
+	v[key] = value
 }
 
 func isPointerWithQueryValues(i interface{}) (interface{}, bool) {
