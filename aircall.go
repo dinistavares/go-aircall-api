@@ -55,6 +55,7 @@ type Client struct {
 	Message *MessagesService
 	User    *UsersService
 	Tag     *TagsService
+	Team    *TeamsService
 	Webhook *WebhookService
 }
 
@@ -111,6 +112,7 @@ func NewWithConfig(config ClientConfig) *Client {
 	client.Number = &NumbersService{client: client}
 	client.Message = &MessagesService{client: client}
 	client.Tag = &TagsService{client: client}
+	client.Team = &TeamsService{client: client}
 	client.User = &UsersService{client: client}
 	client.Webhook = &WebhookService{client: client}
 
@@ -299,8 +301,12 @@ func (client *Client) Put(url string, body interface{}, v interface{}) (*Respons
 	return client.Do(req, v)
 }
 
-func (client *Client) Delete(url string) (*Response, error) {
+func (client *Client) Delete(url string, v ...interface{}) (*Response, error) {
 	req, _ := client.NewRequest("DELETE", url, nil, nil)
+
+	if len(v) > 0 {
+		return client.Do(req, v[0])
+	}
 
 	return client.Do(req, nil)
 }
