@@ -1,6 +1,8 @@
 package aircall
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Webhook service
 type WebhookService service
@@ -28,21 +30,6 @@ type Webhook struct {
 	Active     bool      `json:"active,omitempty"`
 	Token      string    `json:"token,omitempty"`
 	Events     *[]string `json:"events,omitempty"`
-}
-
-type InboundWebhook struct {
-	Resource  string              `json:"resource,omitempty"`
-	Event     string              `json:"event,omitempty"`
-	Timestamp int                 `json:"timestamp,omitempty"`
-	Token     string              `json:"token,omitempty"`
-	Data      *InboundWebhookData `json:"data,omitempty"`
-}
-
-type InboundWebhookData struct {
-	Call    *Call    `json:"call,omitempty"`
-	User    *User    `json:"user,omitempty"`
-	Number  *Number  `json:"number,omitempty"`
-	Contact *Contact `json:"contact,omitempty"`
 }
 
 type WebhookQueries struct{}
