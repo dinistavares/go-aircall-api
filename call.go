@@ -216,6 +216,11 @@ func (p SearchCallsQueryParams) Order(value string) {
 	p.order(value)
 }
 
+// Set 'direction' for for 'Search' method.
+func (p SearchCallsQueryParams) Direction(value string) {
+	p.set("direction", value)
+}
+
 // Set 'phone_number' for for 'Search' method.
 func (p SearchCallsQueryParams) PhoneNumber(value string) {
 	p.set("phone_number", value)
