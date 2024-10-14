@@ -52,6 +52,7 @@ type Client struct {
 	Call                     *CallsService
 	Contact                  *ContactsService
 	ConversationIntelligence *ConversationIntelligenceService
+	Company                  *CompaniesService
 	DialerCampaign           *DialerCampaignsService
 	Number                   *NumbersService
 	Message                  *MessagesService
@@ -112,6 +113,7 @@ func NewWithConfig(config ClientConfig) *Client {
 	client.Call = &CallsService{client: client}
 	client.Contact = &ContactsService{client: client}
 	client.ConversationIntelligence = &ConversationIntelligenceService{client: client}
+	client.Company = &CompaniesService{client: client}
 	client.DialerCampaign = &DialerCampaignsService{client: client}
 	client.Number = &NumbersService{client: client}
 	client.Message = &MessagesService{client: client}
