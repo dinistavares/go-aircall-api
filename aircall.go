@@ -49,6 +49,7 @@ type Client struct {
 	auth    *auth
 	baseURL *url.URL
 
+	A2PCampaignAssociations  *A2PCampaignAssociationsService
 	Call                     *CallsService
 	Contact                  *ContactsService
 	ConversationIntelligence *ConversationIntelligenceService
@@ -111,6 +112,7 @@ func NewWithConfig(config ClientConfig) *Client {
 	client := &Client{config: &config, client: config.HttpClient, auth: &auth{}, baseURL: baseURL}
 
 	// Map services
+	client.A2PCampaignAssociations = &A2PCampaignAssociationsService{client: client}
 	client.Call = &CallsService{client: client}
 	client.Contact = &ContactsService{client: client}
 	client.ConversationIntelligence = &ConversationIntelligenceService{client: client}
