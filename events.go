@@ -3,13 +3,14 @@ package aircall
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 type InboundWebhook struct {
-	Resource  string      `json:"resource,omitempty"`
-	Event     string      `json:"event,omitempty"`
-	Timestamp int         `json:"timestamp,omitempty"`
-	Token     string      `json:"token,omitempty"`
+	Resource  string          `json:"resource,omitempty"`
+	Event     string          `json:"event,omitempty"`
+	Timestamp int             `json:"timestamp,omitempty"`
+	Token     string          `json:"token,omitempty"`
 	Data      json.RawMessage `json:"data,omitempty"`
 }
 
@@ -17,9 +18,9 @@ func (w *InboundWebhook) GetCallData() (*Call, error) {
 	if w.Resource != "call" {
 		return nil, fmt.Errorf("Resource is %s not a call.", w.Resource)
 	}
-	
+
 	call := Call{}
-	
+
 	if err := json.Unmarshal(w.Data, &call); err != nil {
 		return nil, err
 	}
@@ -81,4 +82,54 @@ func (w *InboundWebhook) GetMessageData() (*Message, error) {
 	}
 
 	return &message, nil
+}
+
+func (w *InboundWebhook) GetIntegrationData() (*Integration, error) {
+	if w.Resource != "integration" {
+		return nil, fmt.Errorf("Resource is %s not a integration.", w.Resource)
+	}
+
+	integration := Integration{}
+
+	if err := json.Unmarshal(w.Data, &integration); err != nil {
+		return nil, err
+	}
+
+	return &integration, nil
+}
+
+func (w *InboundWebhook) GetConversationIntelligenceSentimentData() (*ConversationIntelligenceSentiment, error) {
+	if w.Resource != "conversation_intelligence" {
+		return nil, fmt.Errorf("Resource is %s not a conversation intelligence.", w.Resource)
+	}
+
+	if eventParts := strings.Split(w.Event, "."); len(eventParts) > 0 && eventParts[0] != "sentiment" {
+		return nil, fmt.Errorf("Resource is %s, but event is %s not a supported.", w.Resource, w.Event)
+	}
+
+	sentiment := ConversationIntelligenceSentiment{}
+
+	if err := json.Unmarshal(w.Data, &sentiment); err != nil {
+		return nil, err
+	}
+
+	return &sentiment, nil
+}
+
+func (w *InboundWebhook) GetConversationIntelligenceTranscriptionData() (*ConversationIntelligenceTranscription, error) {
+	if w.Resource != "conversation_intelligence" {
+		return nil, fmt.Errorf("Resource is %s not a conversation intelligence.", w.Resource)
+	}
+
+	if eventParts := strings.Split(w.Event, "."); len(eventParts) > 0 && eventParts[0] != "transcription" {
+		return nil, fmt.Errorf("Resource is %s, but event is %s not a supported.", w.Resource, w.Event)
+	}
+
+	transcription := ConversationIntelligenceTranscription{}
+
+	if err := json.Unmarshal(w.Data, &transcription); err != nil {
+		return nil, err
+	}
+
+	return &transcription, nil
 }

@@ -17,6 +17,9 @@ type Integration struct {
 	NumbersCount int    `json:"numbers_count,omitempty"`
 	NumberIDs    []int  `json:"number_ids,omitempty"`
 	User         *User  `json:"user,omitempty"`
+
+	// Included in Webhook event only
+	IntegrationID int `json:"integration_id,omitempty"`
 }
 
 //  ***********************************************************************************
