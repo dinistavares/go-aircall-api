@@ -68,3 +68,17 @@ func (w *InboundWebhook) GetContactData() (*Contact, error) {
 
 	return &contact, nil
 }
+
+func (w *InboundWebhook) GetMessageData() (*Message, error) {
+	if w.Resource != "message" {
+		return nil, fmt.Errorf("Resource is %s not a message.", w.Resource)
+	}
+
+	message := Message{}
+
+	if err := json.Unmarshal(w.Data, &message); err != nil {
+		return nil, err
+	}
+
+	return &message, nil
+}
