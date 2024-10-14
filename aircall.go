@@ -54,6 +54,7 @@ type Client struct {
 	Number  *NumbersService
 	Message *MessagesService
 	User    *UsersService
+	Tag     *TagsService
 	Webhook *WebhookService
 }
 
@@ -109,6 +110,7 @@ func NewWithConfig(config ClientConfig) *Client {
 	client.Contact = &ContactsService{client: client}
 	client.Number = &NumbersService{client: client}
 	client.Message = &MessagesService{client: client}
+	client.Tag = &TagsService{client: client}
 	client.User = &UsersService{client: client}
 	client.Webhook = &WebhookService{client: client}
 

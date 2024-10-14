@@ -49,13 +49,13 @@ type Call struct {
 }
 
 type CallComment struct {
-	ID       int              `json:"id,omitempty"`
-	Content  string           `json:"content,omitempty"`
-	PostedAt int              `json:"posted_at,omitempty"`
-	PostedBy *CommentPostedBy `json:"posted_by,omitempty"`
+	ID       int           `json:"id,omitempty"`
+	Content  string        `json:"content,omitempty"`
+	PostedAt int           `json:"posted_at,omitempty"`
+	PostedBy *CallActionBy `json:"posted_by,omitempty"`
 }
 
-type CommentPostedBy struct {
+type CallActionBy struct {
 	ID                 int    `json:"id,omitempty"`
 	DirectLink         string `json:"direct_link,omitempty"`
 	Name               string `json:"name,omitempty"`
@@ -63,23 +63,22 @@ type CommentPostedBy struct {
 	Available          bool   `json:"available,omitempty"`
 	AvailabilityStatus string `json:"availability_status,omitempty"`
 	CreatedAt          string `json:"created_at,omitempty"`
+	TimeZone           string `json:"time_zone,omitempty"`
+	Language           string `json:"language,omitempty"`
+	State              string `json:"state,omitempty"`
+
+	// Included in Webhook event only
+	Substatus string `json:"substatus,omitempty"`
 }
 
 type CallTag struct {
 	ID        int           `json:"id,omitempty"`
 	Name      string        `json:"name,omitempty"`
 	CreatedAt int           `json:"created_at,omitempty"`
-	TaggedBy  *CallTaggedBy `json:"tagged_by,omitempty"`
-}
+	TaggedBy  *CallActionBy `json:"tagged_by,omitempty"`
 
-type CallTaggedBy struct {
-	ID                 int    `json:"id,omitempty"`
-	DirectLink         string `json:"direct_link,omitempty"`
-	Name               string `json:"name,omitempty"`
-	Email              string `json:"email,omitempty"`
-	Available          bool   `json:"available,omitempty"`
-	AvailabilityStatus string `json:"availability_status,omitempty"`
-	CreatedAt          string `json:"created_at,omitempty"`
+	// Included in Webhook event only
+	TaggedAt int `json:"tagged_at,omitempty"`
 }
 
 type CallInsightCard struct {
@@ -92,6 +91,17 @@ type CallInsightCardContents struct {
 	Link   string `json:"link,omitempty"`
 	Label  string `json:"label,omitempty"`
 	UserID int    `json:"user_id,omitempty"`
+}
+
+type CallTransfer struct {
+	UserID              string `json:"user_id,omitempty"`
+	TeamID              string `json:"team_id,omitempty"`
+	Number              string `json:"number,omitempty"`
+	DispatchingStrategy string `json:"dispatching_strategy,omitempty"`
+}
+
+type CallTags struct {
+	Tags []int `json:"tags,omitempty"`
 }
 
 type CallQueries struct{}
@@ -241,6 +251,155 @@ func (service *CallsService) Search(opts *SearchCallsQueryParams) (*CallsRespons
 	}
 
 	return responseBody, response, nil
+}
+
+//  ***********************************************************************************
+//  GET CALL
+//  https://developer.aircall.io/api-references/#retrieve-a-call
+//  ***********************************************************************************
+
+// Get a call. Reference: https://developer.aircall.io/api-references/#retrieve-a-call
+func (service *CallsService) Get(callID int) (*CallResponse, *Response, error) {
+	_url := fmt.Sprintf("calls/%d", callID)
+
+	responseBody := new(CallResponse)
+	response, err := service.client.Get(_url, nil, responseBody)
+
+	if err != nil {
+		return nil, response, err
+	}
+
+	return responseBody, response, nil
+}
+
+//  ***********************************************************************************
+//  TRANSFER CALL
+//  https://developer.aircall.io/api-references/#transfer-a-call
+//  ***********************************************************************************
+
+// Transfer a call. Reference: https://developer.aircall.io/api-references/#transfer-a-call
+func (service *CallsService) Transfer(callID int, transferCall *CallTransfer) (*Response, error) {
+	_url := fmt.Sprintf("calls/%d/transfers", callID)
+
+	return service.client.Post(_url, transferCall, nil)
+}
+
+//  ***********************************************************************************
+//  COMMENT CALL
+//  https://developer.aircall.io/api-references/#comment-a-call
+//  ***********************************************************************************
+
+// Comment a call. Reference: https://developer.aircall.io/api-references/#comment-a-call
+func (service *CallsService) Comment(callID int, comment string) (*Response, error) {
+	_url := fmt.Sprintf("calls/%d/comments", callID)
+
+	commentCall := CallComment{
+		Content: comment,
+	}
+
+	return service.client.Post(_url, commentCall, nil)
+}
+
+//  ***********************************************************************************
+//  TAG CALL
+//  https://developer.aircall.io/api-references/#tag-a-call
+//  ***********************************************************************************
+
+// Tag a call. Reference: https://developer.aircall.io/api-references/#tag-a-call
+func (service *CallsService) Tag(callID int, tags []int) (*Response, error) {
+	_url := fmt.Sprintf("calls/%d/tags", callID)
+
+	tagsCall := CallTags{
+		Tags: tags,
+	}
+
+	return service.client.Post(_url, tagsCall, nil)
+}
+
+//  ***********************************************************************************
+//  ARCHIVE CALL
+//  https://developer.aircall.io/api-references/#archive-a-call
+//  ***********************************************************************************
+
+// Archive a call. Reference: https://developer.aircall.io/api-references/#archive-a-call
+func (service *CallsService) Archive(callID int) (*CallResponse, *Response, error) {
+	_url := fmt.Sprintf("calls/%d/archive", callID)
+
+	responseBody := new(CallResponse)
+	response, err := service.client.Put(_url, nil, responseBody)
+
+	if err != nil {
+		return nil, response, err
+	}
+
+	return responseBody, response, nil
+}
+
+//  ***********************************************************************************
+//  UNARCHIVE CALL
+//  https://developer.aircall.io/api-references/#unarchive-a-call
+//  ***********************************************************************************
+
+// Unarchive a call. Reference: https://developer.aircall.io/api-references/#unarchive-a-call
+func (service *CallsService) Unarchive(callID int) (*CallResponse, *Response, error) {
+	_url := fmt.Sprintf("calls/%d/unarchive", callID)
+
+	responseBody := new(CallResponse)
+	response, err := service.client.Put(_url, nil, responseBody)
+
+	if err != nil {
+		return nil, response, err
+	}
+
+	return responseBody, response, nil
+}
+
+//  ***********************************************************************************
+//  PAUSE RECORDING CALL
+//  https://developer.aircall.io/api-references/#pause-recording-on-a-call
+//  ***********************************************************************************
+
+// Pause recording on a call. Reference: https://developer.aircall.io/api-references/#pause-recording-on-a-call
+func (service *CallsService) PauseRecording(callID int) (*Response, error) {
+	_url := fmt.Sprintf("calls/%d/pause_recording", callID)
+
+	return service.client.Post(_url, nil, nil)
+}
+
+//  ***********************************************************************************
+//  RESUME RECORDING CALL
+//  https://developer.aircall.io/api-references/#resume-recording-on-a-call
+//  ***********************************************************************************
+
+// Resume recording on a call. Reference: https://developer.aircall.io/api-references/#resume-recording-on-a-call
+func (service *CallsService) ResumeRecording(callID int) (*Response, error) {
+	_url := fmt.Sprintf("calls/%d/resume_recording", callID)
+
+	return service.client.Post(_url, nil, nil)
+}
+
+//  ***********************************************************************************
+//  DELETE RECORDING CALL
+//  https://developer.aircall.io/api-references/#delete-call-recording
+//  ***********************************************************************************
+
+// Delete call recording. Reference: https://developer.aircall.io/api-references/#delete-call-recording
+func (service *CallsService) DeleteRecording(callID int) (*Response, error) {
+	_url := fmt.Sprintf("calls/%d/recording", callID)
+
+	return service.client.Delete(_url)
+}
+
+//  ***********************************************************************************
+//  DELETE VOICEMAIL CALL
+//  https://developer.aircall.io/api-references/#delete-call-voicemail
+//  ***********************************************************************************
+
+// Delete call voicemail. Reference: https://developer.aircall.io/api-references/#delete-call-voicemail
+func (service *CallsService) DeleteVoicemail(callID int) (*Response, error) {
+	_url := fmt.Sprintf("calls/%d/voicemail", callID)
+
+	return service.client.Delete(_url)
 }
 
 //  ***********************************************************************************
