@@ -49,15 +49,16 @@ type Client struct {
 	auth    *auth
 	baseURL *url.URL
 
-	Call    *CallsService
-	Contact *ContactsService
-	DialerCampaign *DialerCampaignsService
-	Number  *NumbersService
-	Message *MessagesService
-	User    *UsersService
-	Tag     *TagsService
-	Team    *TeamsService
-	Webhook *WebhookService
+	Call                     *CallsService
+	Contact                  *ContactsService
+	ConversationIntelligence *ConversationIntelligenceService
+	DialerCampaign           *DialerCampaignsService
+	Number                   *NumbersService
+	Message                  *MessagesService
+	User                     *UsersService
+	Tag                      *TagsService
+	Team                     *TeamsService
+	Webhook                  *WebhookService
 }
 
 type service struct {
@@ -110,6 +111,7 @@ func NewWithConfig(config ClientConfig) *Client {
 	// Map services
 	client.Call = &CallsService{client: client}
 	client.Contact = &ContactsService{client: client}
+	client.ConversationIntelligence = &ConversationIntelligenceService{client: client}
 	client.DialerCampaign = &DialerCampaignsService{client: client}
 	client.Number = &NumbersService{client: client}
 	client.Message = &MessagesService{client: client}

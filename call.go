@@ -17,34 +17,34 @@ type CallResponse struct {
 }
 
 type Call struct {
-	ID               int            `json:"id,omitempty"`
-	Sid              string         `json:"sid,omitempty"`
-	DirectLink       string         `json:"direct_link,omitempty"`
-	Direction        string         `json:"direction,omitempty"`
-	Status           string         `json:"status,omitempty"`
-	MissedCallReason string         `json:"missed_call_reason,omitempty"`
-	StartedAt        int            `json:"started_at,omitempty"`
-	AnsweredAt       int            `json:"answered_at,omitempty"`
-	EndedAt          int            `json:"ended_at,omitempty"`
-	Duration         int            `json:"duration,omitempty"`
-	Voicemail        string         `json:"voicemail,omitempty"`
-	Recording        string         `json:"recording,omitempty"`
-	Asset            string         `json:"asset,omitempty"`
-	RawDigits        string         `json:"raw_digits,omitempty"`
-	Archived         bool           `json:"archived,omitempty"`
-	Cost             string         `json:"cost,omitempty"`
-	Comments         *[]CallComment `json:"comments,omitempty"`
-	Tags             *[]CallTag     `json:"tags,omitempty"`
-	Contact          *Contact       `json:"contact,omitempty"`
-	Number           *Number        `json:"number,omitempty"`
-	User             *User          `json:"user,omitempty"`
+	ID               int                `json:"id,omitempty"`
+	Sid              string             `json:"sid,omitempty"`
+	DirectLink       string             `json:"direct_link,omitempty"`
+	Direction        string             `json:"direction,omitempty"`
+	Status           string             `json:"status,omitempty"`
+	MissedCallReason string             `json:"missed_call_reason,omitempty"`
+	StartedAt        int                `json:"started_at,omitempty"`
+	AnsweredAt       int                `json:"answered_at,omitempty"`
+	EndedAt          int                `json:"ended_at,omitempty"`
+	Duration         int                `json:"duration,omitempty"`
+	Voicemail        string             `json:"voicemail,omitempty"`
+	Recording        string             `json:"recording,omitempty"`
+	Asset            string             `json:"asset,omitempty"`
+	RawDigits        string             `json:"raw_digits,omitempty"`
+	Archived         bool               `json:"archived,omitempty"`
+	Cost             string             `json:"cost,omitempty"`
+	Contact          *Contact           `json:"contact,omitempty"`
+	Number           *Number            `json:"number,omitempty"`
+	User             *User              `json:"user,omitempty"`
+	TransferredBy    *User              `json:"transferred_by,omitempty"`
+	TransferredTo    *User              `json:"transferred_to,omitempty"`
+	AssignedTo       *User              `json:"assigned_to,omitempty"`
+	Comments         *[]CallComment     `json:"comments,omitempty"`
+	Tags             *[]CallTag         `json:"tags,omitempty"`
+	Participants     *[]CallParticipant `json:"participants,omitempty"`
+	Teams            *[]Team            `json:"teams,omitempty"`
 
 	// TODO: add types when services are implemented
-	TransferredBy      interface{} `json:"transferred_by,omitempty"`
-	TransferredTo      interface{} `json:"transferred_to,omitempty"`
-	AssignedTo         interface{} `json:"assigned_to,omitempty"`
-	Teams              interface{} `json:"teams,omitempty"`
-	Participants       interface{} `json:"participants,omitempty"`
 	IvrOptionsSelected interface{} `json:"ivr_options_selected,omitempty"`
 }
 
@@ -102,6 +102,13 @@ type CallTransfer struct {
 
 type CallTags struct {
 	Tags []int `json:"tags,omitempty"`
+}
+
+type CallParticipant struct {
+	ID          *string `json:"id,omitempty"`
+	Type        string  `json:"type,omitempty"`
+	Name        *string `json:"name,omitempty"`
+	PhoneNumber *string `json:"phone_number,omitempty"`
 }
 
 type CallQueries struct{}
