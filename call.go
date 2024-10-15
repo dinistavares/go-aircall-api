@@ -17,35 +17,33 @@ type CallResponse struct {
 }
 
 type Call struct {
-	ID               int                `json:"id,omitempty"`
-	Sid              string             `json:"sid,omitempty"`
-	DirectLink       string             `json:"direct_link,omitempty"`
-	Direction        string             `json:"direction,omitempty"`
-	Status           string             `json:"status,omitempty"`
-	MissedCallReason string             `json:"missed_call_reason,omitempty"`
-	StartedAt        int                `json:"started_at,omitempty"`
-	AnsweredAt       int                `json:"answered_at,omitempty"`
-	EndedAt          int                `json:"ended_at,omitempty"`
-	Duration         int                `json:"duration,omitempty"`
-	Voicemail        string             `json:"voicemail,omitempty"`
-	Recording        string             `json:"recording,omitempty"`
-	Asset            string             `json:"asset,omitempty"`
-	RawDigits        string             `json:"raw_digits,omitempty"`
-	Archived         bool               `json:"archived,omitempty"`
-	Cost             string             `json:"cost,omitempty"`
-	Contact          *Contact           `json:"contact,omitempty"`
-	Number           *Number            `json:"number,omitempty"`
-	User             *User              `json:"user,omitempty"`
-	TransferredBy    *User              `json:"transferred_by,omitempty"`
-	TransferredTo    *User              `json:"transferred_to,omitempty"`
-	AssignedTo       *User              `json:"assigned_to,omitempty"`
-	Comments         *[]CallComment     `json:"comments,omitempty"`
-	Tags             *[]CallTag         `json:"tags,omitempty"`
-	Participants     *[]CallParticipant `json:"participants,omitempty"`
-	Teams            *[]Team            `json:"teams,omitempty"`
-
-	// TODO: add types when services are implemented
-	IvrOptionsSelected interface{} `json:"ivr_options_selected,omitempty"`
+	ID                 int                `json:"id,omitempty"`
+	Sid                string             `json:"sid,omitempty"`
+	DirectLink         string             `json:"direct_link,omitempty"`
+	Direction          string             `json:"direction,omitempty"`
+	Status             string             `json:"status,omitempty"`
+	MissedCallReason   string             `json:"missed_call_reason,omitempty"`
+	StartedAt          int                `json:"started_at,omitempty"`
+	AnsweredAt         int                `json:"answered_at,omitempty"`
+	EndedAt            int                `json:"ended_at,omitempty"`
+	Duration           int                `json:"duration,omitempty"`
+	Voicemail          string             `json:"voicemail,omitempty"`
+	Recording          string             `json:"recording,omitempty"`
+	Asset              string             `json:"asset,omitempty"`
+	RawDigits          string             `json:"raw_digits,omitempty"`
+	Archived           bool               `json:"archived,omitempty"`
+	Cost               string             `json:"cost,omitempty"`
+	Contact            *Contact           `json:"contact,omitempty"`
+	Number             *Number            `json:"number,omitempty"`
+	User               *User              `json:"user,omitempty"`
+	TransferredBy      *User              `json:"transferred_by,omitempty"`
+	TransferredTo      *User              `json:"transferred_to,omitempty"`
+	AssignedTo         *User              `json:"assigned_to,omitempty"`
+	IvrOptionsSelected *CallIVROption     `json:"ivr_options_selected,omitempty"`
+	Comments           *[]CallComment     `json:"comments,omitempty"`
+	Tags               *[]CallTag         `json:"tags,omitempty"`
+	Participants       *[]CallParticipant `json:"participants,omitempty"`
+	Teams              *[]Team            `json:"teams,omitempty"`
 }
 
 type CallComment struct {
@@ -109,6 +107,16 @@ type CallParticipant struct {
 	Type        string  `json:"type,omitempty"`
 	Name        *string `json:"name,omitempty"`
 	PhoneNumber *string `json:"phone_number,omitempty"`
+}
+
+type CallIVROption struct {
+	ID                  string `json:"id,omitempty"`
+	Title               string `json:"title,omitempty"`
+	Key                 string `json:"key,omitempty"`
+	Branch              string `json:"branch,omitempty"`
+	CreatedAt           string `json:"created_at,omitempty"`
+	TransitionStartedAt string `json:"transition_started_at,omitempty"`
+	TransitionEndedAt   string `json:"transition_ended_at,omitempty"`
 }
 
 type CallQueries struct{}
