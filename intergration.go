@@ -54,7 +54,7 @@ func (service *IntegrationService) Enable(install ...bool) (*Response, error) {
 		_url += "?install=true"
 	}
 
-	return service.client.Get(_url, nil, nil)
+	return service.client.Post(_url, nil, nil)
 }
 
 //  ***********************************************************************************
@@ -66,5 +66,5 @@ func (service *IntegrationService) Enable(install ...bool) (*Response, error) {
 func (service *IntegrationService) Disable() (*Response, error) {
 	_url := "integrations/disable"
 
-	return service.client.Delete(_url)
+	return service.client.Post(_url, nil, nil)
 }
