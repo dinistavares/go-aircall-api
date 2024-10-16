@@ -77,7 +77,7 @@ type ConversationIntelligenceSummary struct {
 //  ***********************************************************************************
 
 // Get a call transcription. Reference: https://developer.aircall.io/api-references/#retrieve-a-transcription
-func (service *ConversationIntelligenceService) Get(callID int) (*ConversationIntelligenceTranscriptionResponse, *Response, error) {
+func (service *ConversationIntelligenceService) GetTranscription(callID int) (*ConversationIntelligenceTranscriptionResponse, *Response, error) {
 	_url := fmt.Sprintf("calls/%d/transcription", callID)
 
 	responseBody := new(ConversationIntelligenceTranscriptionResponse)
