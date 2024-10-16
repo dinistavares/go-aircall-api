@@ -15,7 +15,7 @@ type Message struct {
 	ID             string         `json:"id,omitempty"`
 	DirectLink     string         `json:"direct_link,omitempty"`
 	Direction      string         `json:"direction,omitempty"`
-	ExternalNumber int            `json:"external_number,omitempty"`
+	ExternalNumber string         `json:"external_number,omitempty"`
 	Body           string         `json:"body,omitempty"`
 	Status         string         `json:"status,omitempty"`
 	RawDigits      string         `json:"raw_digits,omitempty"`
@@ -23,6 +23,7 @@ type Message struct {
 	UpdatedAt      string         `json:"updated_at,omitempty"`
 	SentAt         string         `json:"sent_at,omitempty"`
 	MediaURL       *[]string      `json:"media_url,omitempty"`
+	User           *User          `json:"user,omitempty"`
 	Number         *Number        `json:"number,omitempty"`
 	Contact        *Contact       `json:"contact,omitempty"`
 	MediaDetails   *[]MediaDetail `json:"media_details,omitempty"`
