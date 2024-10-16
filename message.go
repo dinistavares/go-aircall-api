@@ -45,6 +45,7 @@ type MediaDetail struct {
 //  https://developer.aircall.io/api-references/#create-number-configuration
 //  ***********************************************************************************
 
+// Create number configuration. Reference: https://developer.aircall.io/api-references/#create-number-configuration
 func (service *MessagesService) CreateNumberConfiguration(numberID int, numberConfiguration *NumberConfiguration) (*NumberConfiguration, *Response, error) {
 	_url := fmt.Sprintf("numbers/%d/messages/configuration", numberID)
 
@@ -63,6 +64,7 @@ func (service *MessagesService) CreateNumberConfiguration(numberID int, numberCo
 //  https://developer.aircall.io/api-references/#fetch-number-configuration
 //  ***********************************************************************************
 
+// Get number configuration. Reference: https://developer.aircall.io/api-references/#fetch-number-configuration
 func (service *MessagesService) GetNumberConfiguration(numberID int) (*NumberConfiguration, *Response, error) {
 	_url := fmt.Sprintf("numbers/%d/messages/configuration", numberID)
 
@@ -81,6 +83,7 @@ func (service *MessagesService) GetNumberConfiguration(numberID int) (*NumberCon
 //  https://developer.aircall.io/api-references/#fetch-number-configuration
 //  ***********************************************************************************
 
+// Delete number configuration. Reference: https://developer.aircall.io/api-references/#fetch-number-configuration
 func (service *MessagesService) DeleteNumberConfiguration(numberID int) (*Response, error) {
 	_url := fmt.Sprintf("numbers/%d/messages/configuration", numberID)
 
@@ -92,6 +95,7 @@ func (service *MessagesService) DeleteNumberConfiguration(numberID int) (*Respon
 //  https://developer.aircall.io/api-references/#send-message
 //  ***********************************************************************************
 
+// Send message. Reference: https://developer.aircall.io/api-references/#send-message
 func (service *MessagesService) Send(numberID int, message *NewMessage) (*Message, *Response, error) {
 	_url := fmt.Sprintf("numbers/%d/messages", numberID)
 
