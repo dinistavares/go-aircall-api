@@ -8,6 +8,7 @@ type IntegrationResponse struct {
 }
 
 type Integration struct {
+	ID           int    `json:"id,omitempty"`
 	Name         string `json:"name,omitempty"`
 	CustomName   string `json:"custom_name,omitempty"`
 	Logo         string `json:"logo,omitempty"`
@@ -15,7 +16,7 @@ type Integration struct {
 	Status       string `json:"status,omitempty"`
 	Active       bool   `json:"active,omitempty"`
 	NumbersCount int    `json:"numbers_count,omitempty"`
-	NumberIDs    []int  `json:"number_ids,omitempty"`
+	NumberIDs    *[]int `json:"number_ids,omitempty"`
 	User         *User  `json:"user,omitempty"`
 
 	// Included in Webhook event only
