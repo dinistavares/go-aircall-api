@@ -28,7 +28,7 @@ type Number struct {
 	LiveRecordingActivated bool      `json:"live_recording_activated,omitempty"`
 	Priority               *int      `json:"priority,omitempty"`
 	Messages               *Messages `json:"messages,omitempty"`
-	Users                  *User     `json:"users,omitempty"`
+	Users                  *[]User     `json:"users,omitempty"`
 }
 
 type Messages struct {
