@@ -9,6 +9,7 @@ import (
 type InboundWebhook struct {
 	Resource  string          `json:"resource,omitempty"`
 	Event     string          `json:"event,omitempty"`
+	EventName string          `json:"event_name,omitempty"`
 	Timestamp int             `json:"timestamp,omitempty"`
 	Token     string          `json:"token,omitempty"`
 	Data      json.RawMessage `json:"data,omitempty"`
