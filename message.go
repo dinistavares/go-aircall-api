@@ -19,9 +19,9 @@ type Message struct {
 	Body           string         `json:"body,omitempty"`
 	Status         string         `json:"status,omitempty"`
 	RawDigits      string         `json:"raw_digits,omitempty"`
-	CreatedAt      string         `json:"created_at,omitempty"`
-	UpdatedAt      string         `json:"updated_at,omitempty"`
-	SentAt         string         `json:"sent_at,omitempty"`
+	CreatedAt      int            `json:"created_at,omitempty"`
+	UpdatedAt      int            `json:"updated_at,omitempty"`
+	SentAt         int            `json:"sent_at,omitempty"`
 	MediaURL       *[]string      `json:"media_url,omitempty"`
 	User           *User          `json:"user,omitempty"`
 	Number         *Number        `json:"number,omitempty"`
@@ -98,7 +98,7 @@ func (service *MessagesService) DeleteNumberConfiguration(numberID int) (*Respon
 
 // Send message. Reference: https://developer.aircall.io/api-references/#send-message
 func (service *MessagesService) Send(numberID int, message *NewMessage) (*Message, *Response, error) {
-	_url := fmt.Sprintf("numbers/%d/messages", numberID)
+	_url := fmt.Sprintf("numbers/%d/messages/send", numberID)
 
 	responseBody := new(Message)
 	response, err := service.client.Post(_url, message, responseBody)
