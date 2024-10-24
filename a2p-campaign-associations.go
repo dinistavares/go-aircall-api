@@ -15,14 +15,14 @@ type A2PCampaignAssociationResponse struct {
 }
 
 type A2PCampaignAssociation struct {
-	ID            int    `json:"id,omitempty"`
-	CompanyID     int    `json:"company_id,omitempty"`
-	ExternalID    string `json:"external_id,omitempty"`
-	UpdateStatus  string `json:"update_status,omitempty"`
-	UpdateMessage string `json:"update_message,omitempty"`
-	CreatedAt     string `json:"created_at,omitempty"`
-	UpdatedAt     string `json:"updated_at,omitempty"`
-	Numbers       *[]int `json:"numbers,omitempty"`
+	ID            int         `json:"id,omitempty"`
+	CompanyID     int         `json:"company_id,omitempty"`
+	ExternalID    string      `json:"external_id,omitempty"`
+	UpdateStatus  string      `json:"update_status,omitempty"`
+	UpdateMessage string      `json:"update_message,omitempty"`
+	CreatedAt     interface{} `json:"created_at,omitempty"`
+	UpdatedAt     interface{} `json:"updated_at,omitempty"`
+	Numbers       *[]int      `json:"numbers,omitempty"`
 }
 
 type CreateUpdateA2PCampaignAssociation struct {

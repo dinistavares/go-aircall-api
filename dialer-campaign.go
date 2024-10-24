@@ -6,9 +6,9 @@ import "fmt"
 type DialerCampaignsService service
 
 type DialerCampaign struct {
-	ID        int    `json:"id,omitempty"`
-	NumberID  string `json:"number_id,omitempty"`
-	CreatedAt string `json:"created_at,omitempty"`
+	ID        int         `json:"id,omitempty"`
+	NumberID  string      `json:"number_id,omitempty"`
+	CreatedAt interface{} `json:"created_at,omitempty"`
 }
 
 type CreateUpdateDialerCampaign struct {
@@ -20,10 +20,10 @@ type DialerCampaignPhoneNumberResponse struct {
 }
 
 type DialerCampaignPhoneNumber struct {
-	ID        int    `json:"id,omitempty"`
-	Number    string `json:"number,omitempty"`
-	Called    bool   `json:"called,omitempty"`
-	CreatedAt string `json:"created_at,omitempty"`
+	ID        int         `json:"id,omitempty"`
+	Number    string      `json:"number,omitempty"`
+	Called    bool        `json:"called,omitempty"`
+	CreatedAt interface{} `json:"created_at,omitempty"`
 }
 
 //  ***********************************************************************************

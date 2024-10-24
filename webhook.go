@@ -23,13 +23,13 @@ type CreateUpdateWebhook struct {
 }
 
 type Webhook struct {
-	WebhookID  string    `json:"webhook_id,omitempty"`
-	DirectLink string    `json:"direct_link,omitempty"`
-	CreatedAt  string    `json:"created_at,omitempty"`
-	URL        string    `json:"url,omitempty"`
-	Active     bool      `json:"active,omitempty"`
-	Token      string    `json:"token,omitempty"`
-	Events     *[]string `json:"events,omitempty"`
+	WebhookID  string      `json:"webhook_id,omitempty"`
+	DirectLink string      `json:"direct_link,omitempty"`
+	CreatedAt  interface{} `json:"created_at,omitempty"`
+	URL        string      `json:"url,omitempty"`
+	Active     bool        `json:"active,omitempty"`
+	Token      string      `json:"token,omitempty"`
+	Events     *[]string   `json:"events,omitempty"`
 }
 
 type WebhookQueries struct{}

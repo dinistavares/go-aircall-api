@@ -19,9 +19,9 @@ type Message struct {
 	Body           string         `json:"body,omitempty"`
 	Status         string         `json:"status,omitempty"`
 	RawDigits      string         `json:"raw_digits,omitempty"`
-	CreatedAt      int            `json:"created_at,omitempty"`
-	UpdatedAt      int            `json:"updated_at,omitempty"`
-	SentAt         int            `json:"sent_at,omitempty"`
+	CreatedAt      interface{}    `json:"created_at,omitempty"`
+	UpdatedAt      interface{}    `json:"updated_at,omitempty"`
+	SentAt         interface{}    `json:"sent_at,omitempty"`
 	MediaURL       *[]string      `json:"media_url,omitempty"`
 	User           *User          `json:"user,omitempty"`
 	Number         *Number        `json:"number,omitempty"`

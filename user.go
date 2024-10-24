@@ -17,18 +17,18 @@ type UserResponse struct {
 }
 
 type User struct {
-	ID                 int       `json:"id,omitempty"`
-	DirectLink         string    `json:"direct_link,omitempty"`
-	Name               string    `json:"name,omitempty"`
-	Email              string    `json:"email,omitempty"`
-	CreatedAt          string    `json:"created_at,omitempty"`
-	Available          bool      `json:"available,omitempty"`
-	AvailabilityStatus string    `json:"availability_status,omitempty"`
-	Substatus          string    `json:"substatus,omitempty"`
-	TimeZone           string    `json:"time_zone,omitempty"`
-	Language           string    `json:"language,omitempty"`
-	WrapUpTime         int       `json:"wrap_up_time,omitempty"`
-	Numbers            *[]Number `json:"numbers,omitempty"`
+	ID                 int         `json:"id,omitempty"`
+	DirectLink         string      `json:"direct_link,omitempty"`
+	Name               string      `json:"name,omitempty"`
+	Email              string      `json:"email,omitempty"`
+	CreatedAt          interface{} `json:"created_at,omitempty"`
+	Available          bool        `json:"available,omitempty"`
+	AvailabilityStatus string      `json:"availability_status,omitempty"`
+	Substatus          string      `json:"substatus,omitempty"`
+	TimeZone           string      `json:"time_zone,omitempty"`
+	Language           string      `json:"language,omitempty"`
+	WrapUpTime         int         `json:"wrap_up_time,omitempty"`
+	Numbers            *[]Number   `json:"numbers,omitempty"`
 }
 
 type CreateUpdateUser struct {

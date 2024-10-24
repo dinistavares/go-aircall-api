@@ -15,19 +15,19 @@ type NumberResponse struct {
 }
 
 type Number struct {
-	ID                     int       `json:"id,omitempty"`
-	DirectLink             string    `json:"direct_link,omitempty"`
-	Name                   string    `json:"name,omitempty"`
-	Digits                 string    `json:"digits,omitempty"`
-	CreatedAt              string    `json:"created_at,omitempty"`
-	Country                string    `json:"country,omitempty"`
-	TimeZone               string    `json:"time_zone,omitempty"`
-	Open                   bool      `json:"open,omitempty"`
-	AvailabilityStatus     string    `json:"availability_status,omitempty"`
-	IsIVR                  bool      `json:"is_ivr,omitempty"`
-	LiveRecordingActivated bool      `json:"live_recording_activated,omitempty"`
-	Priority               *int      `json:"priority,omitempty"`
-	Messages               *Messages `json:"messages,omitempty"`
+	ID                     int         `json:"id,omitempty"`
+	DirectLink             string      `json:"direct_link,omitempty"`
+	Name                   string      `json:"name,omitempty"`
+	Digits                 string      `json:"digits,omitempty"`
+	CreatedAt              interface{} `json:"created_at,omitempty"`
+	Country                string      `json:"country,omitempty"`
+	TimeZone               string      `json:"time_zone,omitempty"`
+	Open                   bool        `json:"open,omitempty"`
+	AvailabilityStatus     string      `json:"availability_status,omitempty"`
+	IsIVR                  bool        `json:"is_ivr,omitempty"`
+	LiveRecordingActivated bool        `json:"live_recording_activated,omitempty"`
+	Priority               *int        `json:"priority,omitempty"`
+	Messages               *Messages   `json:"messages,omitempty"`
 	Users                  *[]User     `json:"users,omitempty"`
 }
 

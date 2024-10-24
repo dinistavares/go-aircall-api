@@ -15,11 +15,11 @@ type TeamResponse struct {
 }
 
 type Team struct {
-	ID         int     `json:"id,omitempty"`
-	DirectLink string  `json:"direct_link,omitempty"`
-	Name       string  `json:"name,omitempty"`
-	CreatedAt  string  `json:"created_at,omitempty"`
-	Users      *[]User `json:"users,omitempty"`
+	ID         int         `json:"id,omitempty"`
+	DirectLink string      `json:"direct_link,omitempty"`
+	Name       string      `json:"name,omitempty"`
+	CreatedAt  interface{} `json:"created_at,omitempty"`
+	Users      *[]User     `json:"users,omitempty"`
 }
 
 type CreateTeam struct {

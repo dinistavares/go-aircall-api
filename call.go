@@ -54,16 +54,16 @@ type CallComment struct {
 }
 
 type CallActionBy struct {
-	ID                 int    `json:"id,omitempty"`
-	DirectLink         string `json:"direct_link,omitempty"`
-	Name               string `json:"name,omitempty"`
-	Email              string `json:"email,omitempty"`
-	Available          bool   `json:"available,omitempty"`
-	AvailabilityStatus string `json:"availability_status,omitempty"`
-	CreatedAt          string `json:"created_at,omitempty"`
-	TimeZone           string `json:"time_zone,omitempty"`
-	Language           string `json:"language,omitempty"`
-	State              string `json:"state,omitempty"`
+	ID                 int         `json:"id,omitempty"`
+	DirectLink         string      `json:"direct_link,omitempty"`
+	Name               string      `json:"name,omitempty"`
+	Email              string      `json:"email,omitempty"`
+	Available          bool        `json:"available,omitempty"`
+	AvailabilityStatus string      `json:"availability_status,omitempty"`
+	CreatedAt          interface{} `json:"created_at,omitempty"`
+	TimeZone           string      `json:"time_zone,omitempty"`
+	Language           string      `json:"language,omitempty"`
+	State              string      `json:"state,omitempty"`
 
 	// Included in Webhook event only
 	Substatus string `json:"substatus,omitempty"`
@@ -72,7 +72,7 @@ type CallActionBy struct {
 type CallTag struct {
 	ID        int           `json:"id,omitempty"`
 	Name      string        `json:"name,omitempty"`
-	CreatedAt int           `json:"created_at,omitempty"`
+	CreatedAt interface{}   `json:"created_at,omitempty"`
 	TaggedBy  *CallActionBy `json:"tagged_by,omitempty"`
 
 	// Included in Webhook event only
@@ -110,13 +110,13 @@ type CallParticipant struct {
 }
 
 type CallIVROption struct {
-	ID                  string `json:"id,omitempty"`
-	Title               string `json:"title,omitempty"`
-	Key                 string `json:"key,omitempty"`
-	Branch              string `json:"branch,omitempty"`
-	CreatedAt           string `json:"created_at,omitempty"`
-	TransitionStartedAt string `json:"transition_started_at,omitempty"`
-	TransitionEndedAt   string `json:"transition_ended_at,omitempty"`
+	ID                  string      `json:"id,omitempty"`
+	Title               string      `json:"title,omitempty"`
+	Key                 string      `json:"key,omitempty"`
+	Branch              string      `json:"branch,omitempty"`
+	CreatedAt           interface{} `json:"created_at,omitempty"`
+	TransitionStartedAt string      `json:"transition_started_at,omitempty"`
+	TransitionEndedAt   string      `json:"transition_ended_at,omitempty"`
 }
 
 type CallQueries struct{}

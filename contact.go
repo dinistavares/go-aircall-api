@@ -11,19 +11,19 @@ type ContactsResponse struct {
 }
 
 type ContactResponse struct {
-	Contact *Contact           `json:"contact,omitempty"`
+	Contact *Contact `json:"contact,omitempty"`
 }
 
 type ContactInfoResponse struct {
-	PhoneDetail *ContactInfo           `json:"phone_detail,omitempty"`
-	EmailDetail *ContactInfo           `json:"email_detail,omitempty"`
+	PhoneDetail *ContactInfo `json:"phone_detail,omitempty"`
+	EmailDetail *ContactInfo `json:"email_detail,omitempty"`
 }
 
 type CreateUpdateContact struct {
-	FirstName    string         `json:"first_name,omitempty"`
-	LastName     string         `json:"last_name,omitempty"`
-	Information  string         `json:"information,omitempty"`
-	CompanyName  string         `json:"company_name,omitempty"`
+	FirstName    string        `json:"first_name,omitempty"`
+	LastName     string        `json:"last_name,omitempty"`
+	Information  string        `json:"information,omitempty"`
+	CompanyName  string        `json:"company_name,omitempty"`
 	PhoneNumbers []ContactInfo `json:"phone_numbers,omitempty"`
 	Emails       []ContactInfo `json:"emails,omitempty"`
 }
@@ -36,8 +36,8 @@ type Contact struct {
 	Information  string         `json:"information,omitempty"`
 	IsShared     bool           `json:"is_shared,omitempty"`
 	DirectLink   string         `json:"direct_link,omitempty"`
-	CreatedAt    int            `json:"created_at,omitempty"`
-	UpdatedAt    int            `json:"updated_at,omitempty"`
+	CreatedAt    interface{}    `json:"created_at,omitempty"`
+	UpdatedAt    interface{}    `json:"updated_at,omitempty"`
 	PhoneNumbers *[]ContactInfo `json:"phone_numbers,omitempty"`
 	Emails       *[]ContactInfo `json:"emails,omitempty"`
 }
@@ -223,7 +223,6 @@ func (service *ContactsService) Create(contact *CreateUpdateContact) (*ContactRe
 // Update a contact. Reference: https://developer.aircall.io/api-references/#update-a-contact
 func (service *ContactsService) Update(contactID int, contact *CreateUpdateContact) (*CreateUpdateContact, *Response, error) {
 	_url := fmt.Sprintf("contacts/%d", contactID)
-	
 
 	responseBody := new(CreateUpdateContact)
 	response, err := service.client.Post(_url, contact, responseBody)

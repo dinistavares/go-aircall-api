@@ -24,7 +24,7 @@ type ConversationIntelligenceSummaryResponse struct {
 type ConversationIntelligenceTranscription struct {
 	ID            int                                           `json:"id,omitempty"`
 	CallID        int                                           `json:"call_id,omitempty"`
-	CallCreatedAt string                                        `json:"call_created_at,omitempty"`
+	CallCreatedAt interface{}                                   `json:"call_created_at,omitempty"`
 	Type          string                                        `json:"type,omitempty"`
 	Content       *ConversationIntelligenceTranscriptionContent `json:"content,omitempty"`
 }
@@ -58,17 +58,17 @@ type ConversationIntelligenceParticipants struct {
 }
 
 type ConversationIntelligenceTopic struct {
-	ID        int      `json:"id,omitempty"`
-	CallID    int      `json:"call_id,omitempty"`
-	CreatedAt string   `json:"created_at,omitempty"`
-	Content   []string `json:"content,omitempty"`
+	ID        int         `json:"id,omitempty"`
+	CallID    int         `json:"call_id,omitempty"`
+	CreatedAt interface{} `json:"created_at,omitempty"`
+	Content   []string    `json:"content,omitempty"`
 }
 
 type ConversationIntelligenceSummary struct {
-	ID        int    `json:"id,omitempty"`
-	CallID    int    `json:"call_id,omitempty"`
-	CreatedAt string `json:"created_at,omitempty"`
-	Content   string `json:"content,omitempty"`
+	ID        int         `json:"id,omitempty"`
+	CallID    int         `json:"call_id,omitempty"`
+	CreatedAt interface{} `json:"created_at,omitempty"`
+	Content   string      `json:"content,omitempty"`
 }
 
 //  ***********************************************************************************
