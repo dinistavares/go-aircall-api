@@ -43,9 +43,9 @@ type Contact struct {
 }
 
 type ContactInfo struct {
-	ID    int    `json:"id,omitempty"`
-	Label string `json:"label,omitempty"`
-	Value string `json:"value,omitempty"`
+	ID    interface{} `json:"id,omitempty"`
+	Label string      `json:"label,omitempty"`
+	Value string      `json:"value,omitempty"`
 }
 
 type ContactQueries struct{}
