@@ -22,6 +22,7 @@ const (
 	userAgent                    = "go-aircall-api/" + libraryVersion
 	clientRequestRetryAttempts   = 2
 	clientRequestRetryHoldMillis = 1000
+	clientTimeout                = 10
 )
 
 var (
@@ -98,8 +99,9 @@ func (response *ErrorResponse) Error() string {
 }
 
 func NewWithConfig(config ClientConfig) *Client {
-	if config.HttpClient == nil {
-		config.HttpClient = http.DefaultClient
+	// Create client
+	config.HttpClient = &http.Client{
+		Timeout: time.Duration(clientTimeout * time.Second),
 	}
 
 	if config.RestEndpointURL == "" {
